@@ -1,6 +1,6 @@
 # Trello-like Task Management System
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/vovazum/Trello-like?svg=true)](https://ci.appveyor.com/project/vovazum/Trello-like)
+[![Build status](https://ci.appveyor.com/api/projects/status/ваш-id-проекта?svg=true)](https://ci.appveyor.com/project/vovazum/Trello-like)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://vovazum.github.io/Trello-like/)
 
 Упрощенный аналог Trello с drag-and-drop функционалом для управления задачами.
