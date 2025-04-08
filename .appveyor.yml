@@ -1,13 +1,30 @@
-name: Build and Deploy
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - run: yarn install
-    - run: yarn build
-    - run: yarn deploy
+version: 1.0.{build}
+image: Visual Studio 2022  # Используем актуальный образ Windows
+environment:
+  nodejs_version: "18.17.1"  # Конкретная версия Node.js
+  YARN_VERSION: "1.22.22"
+  YARN_CACHE_FOLDER: C:\yarn-cache
+
+install:
+  - ps: Install-Product node $env:nodejs_version  # Устанавливаем Node.js
+  - yarn --version
+  - yarn install
+
+build_script:
+  - yarn build
+
+artifacts:
+  - path: dist
+    name: dist
+
+on_success:
+  - yarn deploy  # Добавляем явный вызов deploy скрипта
+
+# Для GitHub Pages (альтернативный вариант)
+deploy:
+  provider: GitHub
+  artifact: dist
+  auth_token:
+    secure: YOUR_ENCRYPTED_GITHUB_TOKEN  # Замените на реальный токен
+  on:
+    branch: main
