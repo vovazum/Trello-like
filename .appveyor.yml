@@ -1,12 +1,18 @@
 version: 1.0.{build}
-image: Visual Studio 2022  # Используем актуальный образ Windows
+image: Visual Studio 2022
 environment:
-  nodejs_version: "18.17.1"  # Конкретная версия Node.js
+  nodejs_version: "18.17.1"
   YARN_VERSION: "1.22.22"
-  YARN_CACHE_FOLDER: C:\yarn-cache
-
+  
 install:
-  - ps: Install-Product node $env:nodejs_version  # Устанавливаем Node.js
+  # Установка Node.js (новый способ)
+  - ps: |
+      $nodeUrl = "https://nodejs.org/dist/v$env:nodejs_version/node-v$env:nodejs_version-win-x64.zip"
+      Invoke-WebRequest -Uri $nodeUrl -OutFile "node.zip"
+      Expand-Archive -Path "node.zip" -DestinationPath "$env:ProgramFiles\nodejs" -Force
+      $env:Path = "$env:ProgramFiles\nodejs;" + $env:Path
+  # Проверки
+  - node --version
   - yarn --version
   - yarn install
 
@@ -18,7 +24,7 @@ artifacts:
     name: dist
 
 on_success:
-  - yarn deploy  # Добавляем явный вызов deploy скрипта
+  - yarn deploy
 
 # Для GitHub Pages (альтернативный вариант)
 deploy:
