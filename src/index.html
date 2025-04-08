@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Доска задач</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f5f7;
+    }
+    h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    <div class="column" id="todo">
+      <h2>К выполнению</h2>
+      <div class="cards-container">
+        <p class="empty-message">Нет задач</p>
+      </div>
+      <button class="add-card">+ Добавить карточку</button>
+    </div>
+    
+    <div class="column" id="in-progress">
+      <h2>В процессе</h2>
+      <div class="cards-container">
+        <p class="empty-message">Нет задач</p>
+      </div>
+      <button class="add-card">+ Добавить карточку</button>
+    </div>
+    
+    <div class="column" id="done">
+      <h2>Готово</h2>
+      <div class="cards-container">
+        <p class="empty-message">Нет задач</p>
+      </div>
+      <button class="add-card">+ Добавить карточку</button>
+    </div>
+  </div>
+</body>
+</html>
