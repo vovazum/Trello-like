@@ -1,22 +1,13 @@
-image: node
-environment:
-  YARN_CACHE_FOLDER: C:\yarn-cache
-  YARN_VERSION: 1.22.22
-
-install:
-  - yarn install
-
-build_script:
-  - yarn build
-
-artifacts:
-  - path: dist
-    name: dist
-
-deploy:
-  provider: GitHubPages
-  artifact: dist
-  auth_token:
-    secure: YOUR_GITHUB_TOKEN
-  on:
-    branch: main
+name: Build and Deploy
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - run: yarn install
+    - run: yarn build
+    - run: yarn deploy
