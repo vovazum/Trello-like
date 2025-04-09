@@ -44,7 +44,7 @@ class TrelloApp {
   setupEventListeners() {
     document.querySelectorAll('.add-card').forEach(button => {
       button.addEventListener('click', () => {
-        const text = prompt('Enter card text:');
+        const text = prompt('Введите текст карточки:');
         if (text && text.trim()) {
           const columnId = button.closest('.column').id;
           const container = button.previousElementSibling;
